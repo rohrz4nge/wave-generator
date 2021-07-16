@@ -8,7 +8,7 @@ abstract class Chunk {
 }
 
 abstract class DataChunk extends Chunk {
-  int get bytesPadding;
+  int? get bytesPadding;
 }
 
 

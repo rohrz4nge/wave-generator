@@ -13,9 +13,9 @@ class FormatChunk implements Chunk {
   final int _wFormatTag = 1;
   final int _wChannels;
   final int _dwSamplesPerSecond;
-  int _dwAverageBytesPerSecond;
-  int _wBlockAlign;
-  int _wBitsPerSample;
+  int? _dwAverageBytesPerSecond;
+  int? _wBlockAlign;
+  int? _wBitsPerSample;
 
   FormatChunk(
       this._wChannels, this._dwSamplesPerSecond, BitDepth bitsPerSample) {
@@ -31,8 +31,8 @@ class FormatChunk implements Chunk {
 //        break;
     }
 
-    _wBlockAlign = _wChannels * (_wBitsPerSample ~/ BITS_PER_BYTE);
-    _dwAverageBytesPerSecond = _wBlockAlign * _dwSamplesPerSecond;
+    _wBlockAlign = _wChannels * (_wBitsPerSample! ~/ BITS_PER_BYTE);
+    _dwAverageBytesPerSecond = _wBlockAlign! * _dwSamplesPerSecond;
   }
 
   @override
@@ -40,11 +40,11 @@ class FormatChunk implements Chunk {
 
   int get sampleRate => _dwSamplesPerSecond;
 
-  int get blockAlign => _wBlockAlign;
+  int? get blockAlign => _wBlockAlign;
 
-  int get bytesPerSecond => _dwAverageBytesPerSecond;
+  int? get bytesPerSecond => _dwAverageBytesPerSecond;
 
-  int get bitDepth => _wBitsPerSample;
+  int? get bitDepth => _wBitsPerSample;
 
   @override
   String get sGroupId => _sGroupId;
@@ -79,17 +79,17 @@ class FormatChunk implements Chunk {
 
     // Byte rate
     byteData = ByteData(4);
-    byteData.setUint32(0, _dwAverageBytesPerSecond, Endian.little);
+    byteData.setUint32(0, _dwAverageBytesPerSecond!, Endian.little);
     for (int i = 0; i < 4; i++) yield byteData.getUint8(i);
 
     // Block align
     byteData = ByteData(2);
-    byteData.setUint16(0, _wBlockAlign, Endian.little);
+    byteData.setUint16(0, _wBlockAlign!, Endian.little);
     for (int i = 0; i < 2; i++) yield byteData.getUint8(i);
 
     // Bits per sample
     byteData = ByteData(2);
-    byteData.setUint16(0, _wBitsPerSample, Endian.little);
+    byteData.setUint16(0, _wBitsPerSample!, Endian.little);
     for (int i = 0; i < 2; i++) yield byteData.getUint8(i);
   }
 }

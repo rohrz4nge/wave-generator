@@ -97,7 +97,7 @@ void main() {
   });
 }
 
-DataChunk createSut({FormatChunk format, List<Note> notes}) {
+DataChunk createSut({FormatChunk? format, List<Note>? notes}) {
   FormatChunk f;
   List<Note> n;
 

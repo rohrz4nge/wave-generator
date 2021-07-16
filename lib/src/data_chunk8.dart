@@ -73,7 +73,7 @@ class DataChunk8 implements DataChunk {
 
   @override
   int get length {
-    return totalSamples * format.blockAlign;
+    return totalSamples * format.blockAlign!;
   }
 
   int get totalSamples {

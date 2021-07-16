@@ -15,7 +15,7 @@ class WaveHeader implements Chunk {
   WaveHeader(this._formatChunk, this._dataChunk);
 
   @override
-  int get length => 4 + (8 + _formatChunk.length) + (8 + _dataChunk.length + _dataChunk.bytesPadding);
+  int get length => 4 + (8 + _formatChunk.length) + (8 + _dataChunk.length + _dataChunk.bytesPadding!);
 
   @override
   String get sGroupId => _sGroupId;

@@ -5,8 +5,8 @@ import 'package:wave_generator/src/chunk.dart';
 class DataChunk16 implements DataChunk {
 
   final String _sGroupId = "data";
-  int _dwChunkSize;
-  Int16List _data;
+  int? _dwChunkSize;
+  Int16List? _data;
 
   // nb- stored as two's-complement form
 
@@ -28,7 +28,7 @@ class DataChunk16 implements DataChunk {
 
   @override
   // TODO: implement bytesPadding
-  int get bytesPadding => null;
+  int? get bytesPadding => null;
 
 }
 
